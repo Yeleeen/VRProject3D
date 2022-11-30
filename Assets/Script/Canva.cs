@@ -39,7 +39,7 @@ public class Canva : MonoBehaviour
 
     List<string> answers3 = new List<string>(){
         "Bad",
-        "ああああああ",
+        "Emmanuel Macron",
     };
 
     List<int> trueAnswers = new List<int>(){
@@ -92,10 +92,21 @@ public class Canva : MonoBehaviour
             scoreText.text=""+scoreInt;
         }
 
-        StartCoroutine(TypeText());
+        if (i==questions.Count){
+
+            scoreText.text="Fini ! Score :"+scoreInt;
+        }
+        else
+        {
+            StartCoroutine(TypeText());
         button1Text.text=answers1[i];
         button2Text.text=answers2[i];
         button3Text.text=answers3[i];
+            
+        }
+
+
+        
 
         
 
