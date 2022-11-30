@@ -21,7 +21,6 @@ public class Canva : MonoBehaviour
     int i=0;
     int scoreInt=0;
 
-    int end = 0;
 
     List<string> questions = new List<string>(){
         "How are you ?",
@@ -40,7 +39,7 @@ public class Canva : MonoBehaviour
 
     List<string> answers3 = new List<string>(){
         "Bad",
-        "Emmanuel Macron",
+        "ああああああ",
     };
 
     List<int> trueAnswers = new List<int>(){
@@ -87,31 +86,21 @@ public class Canva : MonoBehaviour
 
     void ChangeQuestion(int answer){
         i=i+1;
-        end = questions.Count;
-
 
         if (trueAnswers[i-1]==answer){
             scoreInt++;
             scoreText.text=""+scoreInt;
         }
 
-        if (i == end){
-
-            scoreText.text="Fini ! Score : "+scoreInt;
-        }
-        else {        
-        
-
         StartCoroutine(TypeText());
         button1Text.text=answers1[i];
         button2Text.text=answers2[i];
         button3Text.text=answers3[i];
-        }
-    }
 
         
 
-    
+    }
+
     IEnumerator TypeText(){
 
         questionText.text=string.Empty;
