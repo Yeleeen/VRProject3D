@@ -28,18 +28,18 @@ public class Canva : MonoBehaviour
     };
 
     List<string> answers1 = new List<string>(){
-        "Good",
-        "Heisenberg",
+        "Good and you ?",
+        "Where is the castle ?",
     };
 
     List<string> answers2 = new List<string>(){
-        "Meh",
-        "Light Yagami",
+        "I like pizza",
+        "Robert",
     };
 
     List<string> answers3 = new List<string>(){
-        "Bad",
-        "Emmanuel Macron",
+        "I lost my phone",
+        "Happy birthday !",
     };
 
     List<int> trueAnswers = new List<int>(){
