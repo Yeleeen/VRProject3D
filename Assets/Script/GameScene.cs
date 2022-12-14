@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneManager : MonoBehaviour
+public class GameScene : MonoBehaviour
 {
     // Start is called before the first frame update
     public static bool GameIsPaused = false;
@@ -13,10 +14,13 @@ public class SceneManager : MonoBehaviour
     public GameObject ScoreMenuUI;
     //public GameObject buttonUI;
 
-    List<GameObject> UI = new List<GameObject>();
+    public List<GameObject> UI = new List<GameObject>();
+
+    void Start(){
     UI.Add(pauseMenuUI);
     UI.Add(gameMenuUI);
     UI.Add(ScoreMenuUI);
+    }
 
     // Update is called once per frame
     void Update()
