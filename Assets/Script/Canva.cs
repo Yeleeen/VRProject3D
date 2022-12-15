@@ -33,7 +33,7 @@ public class Canva : MonoBehaviour
     };
 
     List<string> answers2 = new List<string>(){
-        "I like pizza",
+        "I like pizza.",
         "Robert",
     };
 
