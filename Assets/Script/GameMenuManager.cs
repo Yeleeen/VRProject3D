@@ -7,9 +7,9 @@ public class GameMenuManager : MonoBehaviour
 {
     public GameObject menu;
 
-    public void playGame()
+    public void playCofee()
     {
-        //SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
     
     public void quitGame()
