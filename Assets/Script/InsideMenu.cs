@@ -23,18 +23,20 @@ public class InsideMenu : MonoBehaviour
     {
       
       Debug.Log("start");
+
+       questionMenuButton.onClick.AddListener(HideQuestionCanvas);
+        pauseMenuButton.onClick.AddListener(HideMenuCanvas);
+
+        resumeMenuButton.onClick.AddListener(HideMenuCanvas);
+
+        leaveMenuButton.onClick.AddListener(SceneMenu);
          
     }
 
     // Update is called once per frame
     void Update()
     {
-        questionMenuButton.onClick.AddListener(HideQuestionCanvas);
-        pauseMenuButton.onClick.AddListener(HideMenuCanvas);
-
-        resumeMenuButton.onClick.AddListener(HideMenuCanvas);
-
-        leaveMenuButton.onClick.AddListener(SceneMenu);
+        
         
     }
     void HideQuestionCanvas()

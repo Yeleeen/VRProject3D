@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 
 public class Canva : MonoBehaviour
 {
+
+    public GameObject questionCanva;
+    public GameObject pauseMenuCanva;
+    public GameObject scoreCanva;
+    
     public TextMeshProUGUI questionText;
     public TextMeshProUGUI button1Text;
     public Button Button1;
@@ -18,8 +25,13 @@ public class Canva : MonoBehaviour
 
      public TextMeshProUGUI scoreText;
 
+     public TextMeshProUGUI scoreTotal;
+     public TextMeshProUGUI scoreDesription;
+     public Button next;
+
     int i=0;
     int scoreInt=0;
+    int questionLenght=0;
 
 
     List<string> questions = new List<string>(){
@@ -46,15 +58,30 @@ public class Canva : MonoBehaviour
         1,
         2,
     };
+    List<string> answersList = new List<string>(){};
 
     // Start is called before the first frame update
     void Start()
     {
+
+        for(int z=0; z<questions.Count;z++){
+            if (trueAnswers[z]==1){
+                answersList.Add(answers1[z]);
+            }
+            if (trueAnswers[z]==2){
+                answersList.Add(answers2[z]);
+            }
+            if (trueAnswers[z]==3){
+                answersList.Add(answers3[z]);
+            }
+        }
+        questionLenght=questions.Count;
+
         
         Button btn1 = Button1.GetComponent<Button>();
         Button btn2 = Button2.GetComponent<Button>();
         Button btn3 = Button3.GetComponent<Button>();
-		
+
 
         StartCoroutine(TypeText());
         button1Text.text=answers1[i];
@@ -67,6 +94,8 @@ public class Canva : MonoBehaviour
         Button1.onClick.AddListener(delegate{ChangeQuestion( 1);});
         Button2.onClick.AddListener(delegate{ChangeQuestion( 2);});
         Button3.onClick.AddListener(delegate{ChangeQuestion( 3);});
+
+        next.onClick.AddListener(delegate{scoreDisplay();});
         
     }
 
@@ -77,14 +106,11 @@ public class Canva : MonoBehaviour
         
     }
 
-    void changeText(){
-        button1Text.text="222";
-    }
-    void TaskOnClick(){
-		Debug.Log ("You have clicked the button!");
-	}
+
+   
 
     void ChangeQuestion(int answer){
+        Debug.Log("ChangeQuestion");
         i=i+1;
 
         if (trueAnswers[i-1]==answer){
@@ -93,8 +119,10 @@ public class Canva : MonoBehaviour
         }
 
         if (i==questions.Count){
-
-            scoreText.text="Fini ! Score :"+scoreInt;
+        i=0;
+        questionCanva.SetActive(false);
+        pauseMenuCanva.SetActive(false);
+        scoreDisplay();
         }
         else
         {
@@ -103,14 +131,26 @@ public class Canva : MonoBehaviour
         button2Text.text=answers2[i];
         button3Text.text=answers3[i];
             
-        }
-
-
-        
-
-        
+        }         
 
     }
+
+     void scoreDisplay(){
+        Debug.Log("Score Display");
+        if(i==questions.Count){
+            Debug.Log("Load Scence");
+            SceneManager.LoadScene(1);
+            
+        }
+        else{
+
+        scoreTotal.text="Fini ! Score :"+scoreInt;
+
+        scoreDesription.text="Question "+i+1+  ": "+questions[i] +"\r\n"+"\r\n"+ "Bonne réponse: "+answersList[i];
+        i++;
+    }
+     }
+
 
     IEnumerator TypeText(){
 
