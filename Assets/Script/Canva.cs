@@ -33,8 +33,9 @@ public class Canva : MonoBehaviour
     int scoreInt=0;
     int questionLenght=0;
 
-    
-
+    int randomTrueAnswers=0;
+    int randomFalseAnswers1=0;
+    int randomFalseAnswers2=0;
 
                 
             
@@ -58,103 +59,82 @@ public class Canva : MonoBehaviour
     };
 
     List<string> answers1 = new List<string>(){
-        "ともこさん、おはようございます",//
-        "今日の天気はいいですね。",
-        "仕事はどうですか？",//
-        "僕は今日休みです。",
-        "私は今日東京を見て回ります。",
-        "一緒に行きませんか？",
-        "どこから始めましょうか？",
-        "それは良いアイデアです。",//
-        "あとはレストランに行きたい",
-        "私は寿司を食べたいです。",
-        "あなたが好きな店はありますか？",
-        "それは聞いたことがあります。",//
-        "それでは、「すし寿司」に行きましょう。",
-        "ありがとうございます。" 
+        "",//
+        "",
+        "",//
+        "",
+        "",
+        "",
+        "",
+        "",//
+        "",
+        "",
+        "",
+        "",//
+        "",
+        "" 
     };
 
     List<string> answers2 = new List<string>(){
+        "",//
+        "",
+        "",//
+        "",
+        "",
+        "",
+        "",
+        "",//
+        "",
+        "",
+        "",
+        "",//
+        "",
+        "" 
+    };
+
+    List<string> answersList= new List<string>(){
         "ともこさん、おはようございます",
         "今日の天気はいいですね。",
         "仕事はどうですか？",
-        "僕は今日休みです。",//
-        "私は今日東京を見て回ります。",//
+        "僕は今日休みです。",
+        "私は今日東京を見て回ります。",
         "一緒に行きませんか？",
         "どこから始めましょうか？",
         "それは良いアイデアです。",
         "あとはレストランに行きたい",
-        "私は寿司を食べたいです。",//
-        "あなたが好きな店はありますか？",//
-        "それは聞いたことがあります。",
-        "それでは、「すし寿司」に行きましょう。",//
-        "ありがとうございます。" //
-    };
-
-    List<string> answers3 = new List<string>(){
-        "ともこさん、おはようございます",
-        "今日の天気はいいですね。",//
-        "仕事はどうですか？",
-        "僕は今日休みです。",
-        "私は今日東京を見て回ります。",
-        "一緒に行きませんか？",//
-        "どこから始めましょうか？",//
-        "それは良いアイデアです。",
-        "あとはレストランに行きたい",//
         "私は寿司を食べたいです。",
         "あなたが好きな店はありますか？",
         "それは聞いたことがあります。",
         "それでは、「すし寿司」に行きましょう。",
-        "ありがとうございます。" 
+        "ありがとうございます。"  
     };
-
-    List<int> trueAnswers = new List<int>(){
-        1,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2
-    };
-    List<string> answersList= new List<string>(){};
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+    randomTrueAnswers = Random.Range(1, 4);
+    randomFalseAnswers1= Random.Range(1, 4);
+    randomFalseAnswers2= Random.Range(1, 4);
+    while(randomFalseAnswers1==randomTrueAnswers || randomFalseAnswers2==randomTrueAnswers || randomFalseAnswers1==randomFalseAnswers2){
+    randomFalseAnswers1= Random.Range(1, 4);
+    randomFalseAnswers2= Random.Range(1, 4);
+    }
 
 
-    for(int z=0; z<questions.Count;z++){
-            if (trueAnswers[z]==1){
-                answersList.Add(answers1[z]);
-            }
-            if (trueAnswers[z]==2){
-                answersList.Add(answers2[z]);
-            }
-            if (trueAnswers[z]==3){
-                answersList.Add(answers3[z]);
-            }
-        }
-
-    Debug.Log(questions[2]);
-    Debug.Log(questions.Count);
-    Debug.Log(trueAnswers.Count);
-    Debug.Log(answersList.Count);
-    Debug.Log(answers1.Count);
-Debug.Log(questions[1].Length);
-
+    // for(int z=0; z<questions.Count;z++){
+    //         if (trueAnswers[z]==1){
+    //             answersList.Add(answers1[z]);
+    //         }
+    //         if (trueAnswers[z]==2){
+    //             answersList.Add(answers2[z]);
+    //         }
+    //         if (trueAnswers[z]==3){
+    //             answersList.Add(answers3[z]);
+    //         }
+    //     }
     
-
-
 
         
         questionLenght=questions.Count;
@@ -165,10 +145,7 @@ Debug.Log(questions[1].Length);
         Button btn3 = Button3.GetComponent<Button>();
 
 
-        StartCoroutine(TypeText());
-        button1Text.text=answers1[i];
-        button2Text.text=answers2[i];
-        button3Text.text=answers3[i];
+        initiateQCM();
 
         scoreText.text=""+scoreInt;
 
@@ -189,13 +166,11 @@ Debug.Log(questions[1].Length);
     }
 
 
-   
-
     void ChangeQuestion(int answer){
         Debug.Log("ChangeQuestion");
         i=i+1;
 
-        if (trueAnswers[i-1]==answer){
+        if (randomTrueAnswers==answer){
             scoreInt++;
             scoreText.text=""+scoreInt;
         }
@@ -208,11 +183,14 @@ Debug.Log(questions[1].Length);
         }
         else
         {
-            StartCoroutine(TypeText());
-        button1Text.text=answers1[i];
-        button2Text.text=answers2[i];
-        button3Text.text=answers3[i];
-            
+        randomTrueAnswers = Random.Range(1, 4);
+        randomFalseAnswers1= Random.Range(1, 4);
+        randomFalseAnswers2= Random.Range(1, 4);
+        while(randomFalseAnswers1==randomTrueAnswers || randomFalseAnswers2==randomTrueAnswers || randomFalseAnswers1==randomFalseAnswers2){
+        randomFalseAnswers1= Random.Range(1, 4);
+        randomFalseAnswers2= Random.Range(1, 4);
+        }
+        initiateQCM();
         }         
 
     }
@@ -242,6 +220,38 @@ Debug.Log(questions[1].Length);
         scoreDesription.text="Question "+(i+1)+  ": "+questions[i] +"\r\n"+"\r\n"+ "Bonne réponse: "+answersList[i];
         i++;
     }
+     }
+
+     void initiateQCM(){
+         StartCoroutine(TypeText());
+        if (randomTrueAnswers==1){
+            button1Text.text=answersList[i];
+        }
+        if (randomTrueAnswers==2){
+            button2Text.text=answersList[i];
+        }
+        if (randomTrueAnswers==3){
+            button3Text.text=answersList[i];
+        }
+
+        if (randomFalseAnswers1==1){
+            button1Text.text=answers1[i];
+        }
+        if (randomFalseAnswers1==2){
+            button2Text.text=answers1[i];
+        }
+        if (randomFalseAnswers1==3){
+            button3Text.text=answers1[i];
+        } 
+         if (randomFalseAnswers2==1){
+            button1Text.text=answers2[i];
+        }
+        if (randomFalseAnswers2==2){
+            button2Text.text=answers2[i];
+        }
+        if (randomFalseAnswers2==3){
+            button3Text.text=answers2[i];
+        }
      }
 
 

@@ -41,19 +41,21 @@ public class InsideMenu : MonoBehaviour
     }
     void HideQuestionCanvas()
     {
-        Debug.Log("Pausequestion");
+        
+        Debug.Log("HideQuestion");
         questionCanva.SetActive(false);
         pauseMenuCanva.SetActive(true);
     }
     void HideMenuCanvas()
     {
-        Debug.Log("Pause");
+        Debug.Log("HideMenu");
 
         pauseMenuCanva.SetActive(false);
         questionCanva.SetActive(true);
     }
 
     void SceneMenu(){
-        SceneManager.LoadScene(1); 
+        Debug.Log("HomeMenu");
+        SceneManager.LoadScene(0); 
     }
 }
