@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 
 
-public class Canva : MonoBehaviour
+public class CanvaClassroom : MonoBehaviour
 {
 
     public GameObject questionCanva;
