@@ -33,38 +33,107 @@ public class Canva : MonoBehaviour
     int scoreInt=0;
     int questionLenght=0;
 
+    
+
+
+                
+            
 
     List<string> questions = new List<string>(){
-        "How are you ?",
-        "What is your name ?",
+        "ともこさん、おはようございます",
+        "今日の天気はいいですね。",
+        "仕事はどうですか？",
+        "僕は今日休みです。",
+        "私は今日東京を見て回ります。",
+        "一緒に行きませんか？",
+        "どこから始めましょうか？",
+        "それは良いアイデアです。",
+        "あとはレストランに行きたい",
+        "私は寿司を食べたいです。",
+        "あなたが好きな店はありますか？",
+        "それは聞いたことがあります。",
+        "それでは、「すし寿司」に行きましょう。",
+        "ありがとうございます。"        
+        
     };
 
     List<string> answers1 = new List<string>(){
-        "Good and you ?",
-        "Where is the castle ?",
+        "ともこさん、おはようございます",//
+        "今日の天気はいいですね。",
+        "仕事はどうですか？",//
+        "僕は今日休みです。",
+        "私は今日東京を見て回ります。",
+        "一緒に行きませんか？",
+        "どこから始めましょうか？",
+        "それは良いアイデアです。",//
+        "あとはレストランに行きたい",
+        "私は寿司を食べたいです。",
+        "あなたが好きな店はありますか？",
+        "それは聞いたことがあります。",//
+        "それでは、「すし寿司」に行きましょう。",
+        "ありがとうございます。" 
     };
 
     List<string> answers2 = new List<string>(){
-        "I like pizza.",
-        "Robert",
+        "ともこさん、おはようございます",
+        "今日の天気はいいですね。",
+        "仕事はどうですか？",
+        "僕は今日休みです。",//
+        "私は今日東京を見て回ります。",//
+        "一緒に行きませんか？",
+        "どこから始めましょうか？",
+        "それは良いアイデアです。",
+        "あとはレストランに行きたい",
+        "私は寿司を食べたいです。",//
+        "あなたが好きな店はありますか？",//
+        "それは聞いたことがあります。",
+        "それでは、「すし寿司」に行きましょう。",//
+        "ありがとうございます。" //
     };
 
     List<string> answers3 = new List<string>(){
-        "I lost my phone",
-        "Happy birthday !",
+        "ともこさん、おはようございます",
+        "今日の天気はいいですね。",//
+        "仕事はどうですか？",
+        "僕は今日休みです。",
+        "私は今日東京を見て回ります。",
+        "一緒に行きませんか？",//
+        "どこから始めましょうか？",//
+        "それは良いアイデアです。",
+        "あとはレストランに行きたい",//
+        "私は寿司を食べたいです。",
+        "あなたが好きな店はありますか？",
+        "それは聞いたことがあります。",
+        "それでは、「すし寿司」に行きましょう。",
+        "ありがとうございます。" 
     };
 
     List<int> trueAnswers = new List<int>(){
         1,
         2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
     };
-    List<string> answersList = new List<string>(){};
+    List<string> answersList= new List<string>(){};
+
+
 
     // Start is called before the first frame update
     void Start()
     {
 
-        for(int z=0; z<questions.Count;z++){
+
+    for(int z=0; z<questions.Count;z++){
             if (trueAnswers[z]==1){
                 answersList.Add(answers1[z]);
             }
@@ -75,6 +144,19 @@ public class Canva : MonoBehaviour
                 answersList.Add(answers3[z]);
             }
         }
+
+    Debug.Log(questions[2]);
+    Debug.Log(questions.Count);
+    Debug.Log(trueAnswers.Count);
+    Debug.Log(answersList.Count);
+    Debug.Log(answers1.Count);
+Debug.Log(questions[1].Length);
+
+    
+
+
+
+        
         questionLenght=questions.Count;
 
         
@@ -138,15 +220,26 @@ public class Canva : MonoBehaviour
      void scoreDisplay(){
         Debug.Log("Score Display");
         if(i==questions.Count){
+            if (SceneManager.GetActiveScene().buildIndex==1){
+                PlayerPrefs.SetInt("CityScore", scoreInt);
+            }
+            else if (SceneManager.GetActiveScene().buildIndex==2){
+                PlayerPrefs.SetInt("ClassScore", scoreInt);
+
+            } 
+            else if (SceneManager.GetActiveScene().buildIndex==3){
+                PlayerPrefs.SetInt("RestoScore", scoreInt);
+
+            }
             Debug.Log("Load Scence");
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
             
         }
         else{
 
-        scoreTotal.text="Fini ! Score :"+scoreInt;
+        scoreTotal.text="Final Score :"+scoreInt;
 
-        scoreDesription.text="Question "+i+1+  ": "+questions[i] +"\r\n"+"\r\n"+ "Bonne réponse: "+answersList[i];
+        scoreDesription.text="Question "+(i+1)+  ": "+questions[i] +"\r\n"+"\r\n"+ "Bonne réponse: "+answersList[i];
         i++;
     }
      }

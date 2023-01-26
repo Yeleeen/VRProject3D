@@ -7,18 +7,32 @@ using UnityEngine.UI;
 
 public class GameMenuManager : MonoBehaviour
 {
-    public Button Button1;
+    public Button ButtonCity;
+    public Button ButtonResto;
+    public Button ButtonClass;
 
     public void playCity()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+    }
+
+    public void playResto()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void playClass()
+    {
+        SceneManager.LoadScene(2);
     }
     
     
     // Start is called before the first frame update
     void Start()
     {
-        Button1.onClick.AddListener(delegate{playCity();});
+        ButtonCity.onClick.AddListener(delegate{playCity();});
+        ButtonResto.onClick.AddListener(delegate{playResto();});
+        ButtonClass.onClick.AddListener(delegate{playClass();});
 
         
     }
