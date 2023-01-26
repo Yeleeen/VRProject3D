@@ -2699,6 +2699,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.305
       objectReference: {fileID: 0}
+    - target: {fileID: 634763042626310517, guid: fd18666410a16274c966cc76914cc819, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 824015559753126921, guid: d2f8d05843976924ca565180c724f188, type: 3}
     - target: {fileID: 919132149155446097, guid: fd18666410a16274c966cc76914cc819, type: 3}
       propertyPath: m_Name
       value: "Sal\xF3n2 (1)"
